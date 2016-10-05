@@ -41,6 +41,17 @@ describe "#translate" do
     expect(s).to eq("eatay iepay")
   end
 
+  it "counts how many consonants are at the start of a word" do
+    c = count_beginning_consonants("three")
+    expect(c).to eq 3
+
+    c = count_beginning_consonants("giraffe")
+    expect(c).to eq 1
+
+    c = count_beginning_consonants("apple")
+    expect(c).to eq 0
+  end
+
   it "translates a word beginning with three consonants" do
     expect(translate("three")).to eq("eethray")
   end
@@ -48,6 +59,17 @@ describe "#translate" do
   it "counts 'sch' as a single phoneme" do
     s = translate("school")
     expect(s).to eq("oolschay")
+  end
+
+  it "counts 'qu' at the beginning of a word" do
+    s = find_beginning_qu_phonemes("quake")
+    expect(s).to eq 2
+
+    s = find_beginning_qu_phonemes("water")
+    expect(s).to eq 0
+
+    s = find_beginning_qu_phonemes("squack")
+    expect(s).to eq 3
   end
 
   it "counts 'qu' as a single phoneme" do
@@ -64,9 +86,5 @@ describe "#translate" do
     s = translate("the quick brown fox")
     expect(s).to eq("ethay ickquay ownbray oxfay")
   end
-
-  # Test-driving bonus:
-  # * write a test asserting that capitalized words are still capitalized (but with a different initial capital letter, of course)
-  # * retain the punctuation from the original phrase
 
 end
